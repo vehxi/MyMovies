@@ -1,0 +1,17 @@
+.DS_Store
+.build/
+DerivedData/
+build/
+dist/
+*.dmg
+*.xcuserstate
+xcuserdata/
+
+# Local planning and agent files
+/*.md
+!/README.md
+/.agents/
+/.codex/
+
+# Unused Xcode template kept only in the local workspace
+/My Movies/
