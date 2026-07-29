@@ -12,7 +12,7 @@ struct LibraryView: View {
     @State private var startupError: String?
 
     private let grid = [
-        GridItem(.adaptive(minimum: 148, maximum: 210), spacing: 20)
+        GridItem(.adaptive(minimum: 148, maximum: 210), spacing: 28)
     ]
 
     var body: some View {
@@ -113,7 +113,7 @@ struct LibraryView: View {
             }
         } else {
             ScrollView {
-                LazyVGrid(columns: grid, alignment: .leading, spacing: 24) {
+                LazyVGrid(columns: grid, alignment: .leading, spacing: 32) {
                     ForEach(filteredMovies) { movie in
                         MovieCardView(movie: movie) {
                             presentedSheet = MovieSheet(content: .detail(movie))
