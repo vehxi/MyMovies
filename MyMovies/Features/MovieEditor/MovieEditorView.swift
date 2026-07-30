@@ -160,12 +160,41 @@ struct MovieEditorView: View {
     private var fields: some View {
         Form {
             Section {
-                TextField("Title", text: $title)
-                    .accessibilityLabel("Movie Title")
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Title")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
 
-                TextField("Release Year", text: $yearText)
-                    .frame(maxWidth: 160)
-                    .accessibilityHint("Enter a four digit year or leave blank")
+                    TextField(
+                        "",
+                        text: $title,
+                        prompt: Text("Enter movie title")
+                    )
+                        .labelsHidden()
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.leading)
+                        .accessibilityLabel("Movie Title")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Release Year")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+
+                    TextField(
+                        "",
+                        text: $yearText,
+                        prompt: Text("YYYY")
+                    )
+                        .labelsHidden()
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.leading)
+                        .monospacedDigit()
+                        .frame(width: 120, alignment: .leading)
+                        .accessibilityHint("Enter a four digit year or leave blank")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 Picker("Status", selection: statusBinding) {
                     ForEach(ViewingStatus.allCases) { value in
@@ -218,8 +247,17 @@ struct MovieEditorView: View {
             }
 
             Section("Description") {
-                TextField("Description", text: $synopsis, axis: .vertical)
+                TextField(
+                    "",
+                    text: $synopsis,
+                    prompt: Text("Add notes or a synopsis"),
+                    axis: .vertical
+                )
+                    .labelsHidden()
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.leading)
                     .lineLimit(5...10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .formStyle(.grouped)

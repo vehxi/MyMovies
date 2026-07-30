@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@ Tier" : {
       "localizations" : {
         "ru" : {
@@ -123,6 +126,9 @@
           }
         }
       }
+    },
+    "Add notes or a synopsis" : {
+
     },
     "Add your first movie to start a personal collection." : {
       "localizations" : {
@@ -455,6 +461,9 @@
       }
     },
     "Enter a four digit year or leave blank" : {
+
+    },
+    "Enter movie title" : {
 
     },
     "Favorite" : {
@@ -946,6 +955,9 @@
           }
         }
       }
+    },
+    "YYYY" : {
+
     }
   },
   "version" : "1.0"
