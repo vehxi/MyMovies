@@ -13,4 +13,15 @@ enum PersistenceController {
         )
         return try ModelContainer(for: schema, configurations: [configuration])
     }
+
+    @MainActor
+    static func migrateLegacyFavorites(in context: ModelContext) throws {
+        let movies = try context.fetch(FetchDescriptor<Movie>())
+        let didMigrate = movies.reduce(into: false) { result, movie in
+            result = movie.migrateLegacyFavoriteIfNeeded() || result
+        }
+        if didMigrate {
+            try context.save()
+        }
+    }
 }

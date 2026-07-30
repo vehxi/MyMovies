@@ -49,7 +49,7 @@ struct MovieDetailView: View {
                 applyPendingStatus()
             }
         } message: {
-            Text("Ratings are only available for watched or favorite movies. Changing the status will clear this rating.")
+            Text("Ratings are only available for watched movies. Changing the status will clear this rating.")
         }
         .alert("Could Not Complete the Action", isPresented: errorBinding) {
             Button("OK", role: .cancel) {}
@@ -79,6 +79,18 @@ struct MovieDetailView: View {
                 }
             }
             .frame(maxWidth: 260)
+
+            Button {
+                movie.isFavorite.toggle()
+                saveChanges()
+            } label: {
+                Label(
+                    movie.isFavorite ? "Remove from Favorites" : "Add to Favorites",
+                    systemImage: movie.isFavorite ? "heart.fill" : "heart"
+                )
+            }
+            .buttonStyle(.bordered)
+            .accessibilityValue(movie.isFavorite ? "Favorite" : "Not Favorite")
 
             LabeledContent("Rating") {
                 StarRating(

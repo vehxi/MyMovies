@@ -127,6 +127,16 @@
         }
       }
     },
+    "Add to Favorites" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить в любимое"
+          }
+        }
+      }
+    },
     "Add notes or a synopsis" : {
 
     },
@@ -616,6 +626,16 @@
         }
       }
     },
+    "Not Favorite" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не в любимом"
+          }
+        }
+      }
+    },
     "Number of Movies" : {
       "localizations" : {
         "ru" : {
@@ -676,12 +696,12 @@
         }
       }
     },
-    "Ratings are only available for watched or favorite movies. Changing the status will clear this rating." : {
+    "Ratings are only available for watched movies. Changing the status will clear this rating." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Оценка доступна только для просмотренных и любимых фильмов. При смене статуса эта оценка будет удалена."
+            "value" : "Оценка доступна только для просмотренных фильмов. При смене статуса эта оценка будет удалена."
           }
         }
       }
@@ -712,6 +732,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить оценку?"
+          }
+        }
+      }
+    },
+    "Remove from Favorites" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить из любимого"
           }
         }
       }

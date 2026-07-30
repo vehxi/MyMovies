@@ -3,11 +3,14 @@ import SwiftData
 
 @Model
 final class Movie {
+    private static let legacyFavoriteStatus = "favorite"
+
     @Attribute(.unique) var id: UUID
     var title: String
     var normalizedTitle: String
     var releaseYear: Int?
     var statusRawValue: String
+    var favoriteFlag: Bool = false
     var rating: Int?
     var synopsis: String
     var coverFilename: String?
@@ -23,6 +26,7 @@ final class Movie {
         title: String,
         releaseYear: Int? = nil,
         status: ViewingStatus = .wantToWatch,
+        isFavorite: Bool = false,
         rating: Int? = nil,
         synopsis: String = "",
         coverFilename: String? = nil,
@@ -36,6 +40,7 @@ final class Movie {
         self.normalizedTitle = TextNormalizer.normalize(title)
         self.releaseYear = releaseYear
         self.statusRawValue = status.rawValue
+        self.favoriteFlag = isFavorite
         self.rating = RatingRules.validated(rating, for: status)
         self.synopsis = synopsis.trimmingCharacters(in: .whitespacesAndNewlines)
         self.coverFilename = coverFilename
@@ -46,11 +51,37 @@ final class Movie {
     }
 
     var status: ViewingStatus {
-        get { ViewingStatus(rawValue: statusRawValue) ?? .wantToWatch }
+        get {
+            if statusRawValue == Self.legacyFavoriteStatus {
+                return .watched
+            }
+            return ViewingStatus(rawValue: statusRawValue) ?? .wantToWatch
+        }
         set {
+            if statusRawValue == Self.legacyFavoriteStatus {
+                favoriteFlag = true
+            }
             statusRawValue = newValue.rawValue
             rating = RatingRules.validated(rating, for: newValue)
         }
+    }
+
+    var isFavorite: Bool {
+        get { favoriteFlag || statusRawValue == Self.legacyFavoriteStatus }
+        set {
+            favoriteFlag = newValue
+            if statusRawValue == Self.legacyFavoriteStatus {
+                statusRawValue = ViewingStatus.watched.rawValue
+            }
+        }
+    }
+
+    @discardableResult
+    func migrateLegacyFavoriteIfNeeded() -> Bool {
+        guard statusRawValue == Self.legacyFavoriteStatus else { return false }
+        favoriteFlag = true
+        statusRawValue = ViewingStatus.watched.rawValue
+        return true
     }
 
     var tier: MovieTier? {
@@ -62,6 +93,7 @@ final class Movie {
         title: String,
         releaseYear: Int?,
         status: ViewingStatus,
+        isFavorite: Bool,
         rating: Int?,
         synopsis: String,
         coverFilename: String?,
@@ -72,6 +104,7 @@ final class Movie {
         normalizedTitle = TextNormalizer.normalize(title)
         self.releaseYear = releaseYear
         statusRawValue = status.rawValue
+        favoriteFlag = isFavorite
         self.rating = RatingRules.validated(rating, for: status)
         self.synopsis = synopsis.trimmingCharacters(in: .whitespacesAndNewlines)
         self.coverFilename = coverFilename

@@ -26,6 +26,17 @@ struct MovieCardView: View {
                             .opacity(isHovering ? 1 : 0)
                             .accessibilityHidden(true)
                     }
+                    .overlay(alignment: .topTrailing) {
+                        if movie.isFavorite {
+                            Image(systemName: "heart.fill")
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(.red)
+                                .padding(8)
+                                .background(.regularMaterial, in: Circle())
+                                .padding(8)
+                                .accessibilityHidden(true)
+                        }
+                    }
 
                 Text(movie.title)
                     .font(.headline)
@@ -63,6 +74,9 @@ struct MovieCardView: View {
         var description = movie.title
         if let year = movie.releaseYear {
             description += ", \(year)"
+        }
+        if movie.isFavorite {
+            description += ", \(String(localized: "Favorite"))"
         }
         return Text(description)
     }

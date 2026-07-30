@@ -48,6 +48,7 @@ struct LibraryView: View {
         }
         .task {
             do {
+                try PersistenceController.migrateLegacyFavorites(in: modelContext)
                 let language = AppLanguage(rawValue: appLanguageRawValue) ?? .system
                 try InitialGenreSeeder.seedIfNeeded(context: modelContext, language: language)
             } catch {
@@ -69,6 +70,13 @@ struct LibraryView: View {
                 Image(systemName: "film.stack")
             }
             .tag(LibraryFilter.all)
+
+            Label {
+                sidebarLabel("Favorite", count: favoriteCount)
+            } icon: {
+                Image(systemName: "heart.fill")
+            }
+            .tag(LibraryFilter.favorites)
 
             Label("Tier List", systemImage: "square.grid.3x3.square")
                 .tag(LibraryFilter.tierList)
@@ -126,14 +134,22 @@ struct LibraryView: View {
     }
 
     private var filteredMovies: [Movie] {
-        guard case .status(let status) = selection ?? .all else { return movies }
-        return movies.filter { $0.status == status }
+        switch selection ?? .all {
+        case .all, .tierList:
+            return movies
+        case .favorites:
+            return movies.filter(\.isFavorite)
+        case .status(let status):
+            return movies.filter { $0.status == status }
+        }
     }
 
     private var selectionTitle: String {
         switch selection ?? .all {
         case .all:
             AppLocalization.string("All Movies", locale: locale)
+        case .favorites:
+            AppLocalization.string("Favorite", locale: locale)
         case .tierList:
             AppLocalization.string("Tier List", locale: locale)
         case .status(let status):
@@ -164,6 +180,10 @@ struct LibraryView: View {
 
     private func statusCount(_ status: ViewingStatus) -> Int {
         movies.lazy.filter { $0.status == status }.count
+    }
+
+    private var favoriteCount: Int {
+        movies.lazy.filter(\.isFavorite).count
     }
 
     private func sidebarLabel(_ title: LocalizedStringKey, count: Int) -> some View {

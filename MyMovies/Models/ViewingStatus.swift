@@ -6,12 +6,11 @@ enum ViewingStatus: String, Codable, CaseIterable, Identifiable, Sendable {
     case watching
     case watched
     case abandoned
-    case favorite
 
     var id: String { rawValue }
 
     var isWatched: Bool {
-        self == .watched || self == .favorite
+        self == .watched
     }
 
     var allowsRating: Bool { isWatched }
@@ -22,7 +21,6 @@ enum ViewingStatus: String, Codable, CaseIterable, Identifiable, Sendable {
         case .watching: "Watching"
         case .watched: "Watched"
         case .abandoned: "Abandoned"
-        case .favorite: "Favorite"
         }
     }
 
@@ -36,8 +34,6 @@ enum ViewingStatus: String, Codable, CaseIterable, Identifiable, Sendable {
             AppLocalization.string("Watched", locale: locale)
         case .abandoned:
             AppLocalization.string("Abandoned", locale: locale)
-        case .favorite:
-            AppLocalization.string("Favorite", locale: locale)
         }
     }
 
@@ -47,7 +43,6 @@ enum ViewingStatus: String, Codable, CaseIterable, Identifiable, Sendable {
         case .watching: "play.circle"
         case .watched: "checkmark.circle"
         case .abandoned: "xmark.circle"
-        case .favorite: "heart.fill"
         }
     }
 }

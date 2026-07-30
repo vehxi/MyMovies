@@ -14,6 +14,7 @@ struct MovieEditorView: View {
     @State private var title: String
     @State private var yearText: String
     @State private var status: ViewingStatus
+    @State private var isFavorite: Bool
     @State private var rating: Int?
     @State private var synopsis: String
     @State private var selectedGenreIDs: Set<UUID>
@@ -32,6 +33,7 @@ struct MovieEditorView: View {
         _title = State(initialValue: movie?.title ?? "")
         _yearText = State(initialValue: movie?.releaseYear.map(String.init) ?? "")
         _status = State(initialValue: movie?.status ?? .wantToWatch)
+        _isFavorite = State(initialValue: movie?.isFavorite ?? false)
         _rating = State(initialValue: movie?.rating)
         _synopsis = State(initialValue: movie?.synopsis ?? "")
         _selectedGenreIDs = State(initialValue: Set(movie?.genres.map(\.id) ?? []))
@@ -78,7 +80,7 @@ struct MovieEditorView: View {
                 pendingStatus = nil
             }
         } message: {
-            Text("Ratings are only available for watched or favorite movies. Changing the status will clear this rating.")
+            Text("Ratings are only available for watched movies. Changing the status will clear this rating.")
         }
         .alert("Could Not Save Movie", isPresented: errorBinding) {
             Button("OK", role: .cancel) {}
@@ -201,6 +203,13 @@ struct MovieEditorView: View {
                         Label(value.titleKey, systemImage: value.systemImage)
                             .tag(value)
                     }
+                }
+
+                Toggle(isOn: $isFavorite) {
+                    Label(
+                        "Favorite",
+                        systemImage: isFavorite ? "heart.fill" : "heart"
+                    )
                 }
 
                 LabeledContent("Rating") {
@@ -367,6 +376,7 @@ struct MovieEditorView: View {
                     title: title,
                     releaseYear: parsedYear,
                     status: status,
+                    isFavorite: isFavorite,
                     rating: rating,
                     synopsis: synopsis,
                     coverFilename: coverFilename,
@@ -378,6 +388,7 @@ struct MovieEditorView: View {
                         title: title,
                         releaseYear: parsedYear,
                         status: status,
+                        isFavorite: isFavorite,
                         rating: rating,
                         synopsis: synopsis,
                         coverFilename: coverFilename,
