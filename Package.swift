@@ -22,11 +22,6 @@ let package = Package(
             resources: [
                 .process("Resources/Localizable.xcstrings")
             ]
-        ),
-        .testTarget(
-            name: "MyMoviesTests",
-            dependencies: ["MyMovies"],
-            path: "MyMoviesTests"
         )
     ]
 )

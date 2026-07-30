@@ -6,19 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		100000000000000000000030 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 100000000000000000000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 100000000000000000000010;
-			remoteInfo = "My Movies";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		100000000000000000000020 /* My Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Movies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		100000000000000000000021 /* MyMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -27,22 +16,10 @@
 			path = MyMovies;
 			sourceTree = "<group>";
 		};
-		100000000000000000000041 /* MyMoviesTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MyMoviesTests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		100000000000000000000050 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		100000000000000000000051 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				100000000000000000000040 /* MyMovies */,
-				100000000000000000000041 /* MyMoviesTests */,
 				100000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				100000000000000000000020 /* My Movies.app */,
-				100000000000000000000021 /* MyMoviesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,29 +70,6 @@
 			productReference = 100000000000000000000020 /* My Movies.app */;
 			productType = "com.apple.product-type.application";
 		};
-		100000000000000000000011 /* MyMoviesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 100000000000000000000071 /* Build configuration list for PBXNativeTarget "MyMoviesTests" */;
-			buildPhases = (
-				100000000000000000000053 /* Sources */,
-				100000000000000000000051 /* Frameworks */,
-				100000000000000000000055 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				100000000000000000000031 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				100000000000000000000041 /* MyMoviesTests */,
-			);
-			name = MyMoviesTests;
-			packageProductDependencies = (
-			);
-			productName = MyMoviesTests;
-			productReference = 100000000000000000000021 /* MyMoviesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -130,10 +82,6 @@
 				TargetAttributes = {
 					100000000000000000000010 = {
 						CreatedOnToolsVersion = 26.6;
-					};
-					100000000000000000000011 = {
-						CreatedOnToolsVersion = 26.6;
-						TestTargetID = 100000000000000000000010;
 					};
 				};
 			};
@@ -153,20 +101,12 @@
 			projectRoot = "";
 			targets = (
 				100000000000000000000010 /* My Movies */,
-				100000000000000000000011 /* MyMoviesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		100000000000000000000054 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		100000000000000000000055 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,22 +123,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		100000000000000000000053 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		100000000000000000000031 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 100000000000000000000010 /* My Movies */;
-			targetProxy = 100000000000000000000030 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		100000000000000000000080 /* Debug */ = {
@@ -311,7 +236,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -326,7 +251,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vehxi.MyMovies;
 				PRODUCT_MODULE_NAME = MyMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -347,7 +272,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -362,7 +287,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vehxi.MyMovies;
 				PRODUCT_MODULE_NAME = MyMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -374,50 +299,6 @@
 			};
 			name = Release;
 		};
-		100000000000000000000084 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vehxi.MyMoviesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Movies.app/Contents/MacOS/My Movies";
-			};
-			name = Debug;
-		};
-		100000000000000000000085 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vehxi.MyMoviesTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 6.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Movies.app/Contents/MacOS/My Movies";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,15 +307,6 @@
 			buildConfigurations = (
 				100000000000000000000082 /* Debug */,
 				100000000000000000000083 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		100000000000000000000071 /* Build configuration list for PBXNativeTarget "MyMoviesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				100000000000000000000084 /* Debug */,
-				100000000000000000000085 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
